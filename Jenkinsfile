@@ -10,8 +10,8 @@ pipeline {
                 sh '''
                 ls -al && pwd
                 ./mvnw clean install
-                podman build -t pet-clinic:latest .
-                podman images
+                docker build -t pet-clinic:latest .
+                docker images
                 '''
             }
         }
