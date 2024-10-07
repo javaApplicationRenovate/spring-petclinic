@@ -9,7 +9,7 @@ pipeline {
                 println "Build WORKSPACE ${WORKSPACE}"
                 sh '''
                 ls -al && pwd
-                mvn clean install
+                ./mvnw clean install
                 podman build -t pet-clinic:latest .
                 podman images
                 '''
