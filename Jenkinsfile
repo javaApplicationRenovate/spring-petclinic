@@ -22,5 +22,12 @@ pipeline {
                 }
             }
         }
+        stage('Generate Application SBOM') {
+            steps{
+                script{
+                    sh "/var/lib/jenkins/lib/concert_ctl_python --app --env"
+                }
+            }
+        }
     }
 }
