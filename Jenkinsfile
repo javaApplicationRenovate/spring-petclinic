@@ -25,6 +25,7 @@ pipeline {
         stage('Generate Application SBOM') {
             steps{
                 script{
+                    println "JOB_NAME ${JOB_NAME}"
                     sh "/var/lib/jenkins/lib/concert_ctl_python --app --env"
                 }
             }
