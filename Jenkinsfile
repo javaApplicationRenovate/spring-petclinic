@@ -22,6 +22,19 @@ pipeline {
                 }
             }
         }
+        stage('Test concertCtl and set environment') {
+            steps{
+                script{      
+
+                  withCredentials([usernamePassword(credentialsId: "${CONCERT_CREDENTIALS}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    env.CONCERT_USERNAME="${USERNAME}"
+                    env.CONCERT_PASSWORD="${PASSWORD}"                                      
+                    sh "/var/lib/jenkins/lib/concert-ctl -e"
+
+                  }
+              }
+            }
+        }
         stage('Generate Application SBOM') {
             steps{
                 script{
