@@ -26,7 +26,7 @@ pipeline {
             steps{
                 script{      
 
-                  withCredentials([usernamePassword(credentialsId: "${CONCERT_CREDENTIALS}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                  withCredentials([usernamePassword(credentialsId: "CONCERT_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     env.CONCERT_USERNAME="${USERNAME}"
                     env.CONCERT_PASSWORD="${PASSWORD}"    
                     println "USERNAME ${USERNAME}"         
