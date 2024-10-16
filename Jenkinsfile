@@ -29,7 +29,7 @@ pipeline {
                   withCredentials([usernamePassword(credentialsId: "CONCERT_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     env.CONCERT_USERNAME="${USERNAME}"
                     env.CONCERT_PASSWORD="${PASSWORD}"    
-                    sh "/var/lib/jenkins/lib/concert-ctl -e"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test -e"
 
                   }
               }
@@ -38,7 +38,7 @@ pipeline {
         stage('Generate Application SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --app"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --app"
                 }
             }
         }
