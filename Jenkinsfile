@@ -28,7 +28,7 @@ pipeline {
                   withCredentials([usernamePassword(credentialsId: "CONCERT_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     env.CONCERT_USERNAME="${USERNAME}"
                     env.CONCERT_PASSWORD="${PASSWORD}"    
-                    sh "/var/lib/jenkins/lib/concert-ctl-python -e"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test -e"
 
                     }
                 }
@@ -37,35 +37,35 @@ pipeline {
         stage('Generate Application SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --app"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --app"
                 }
             }
         }
         stage('Generate Build SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --build"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --build"
                 }
             }
         }
         stage('Generate Deploy SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --deploy"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --deploy"
                 }
             }
         }
         stage('Generate Image Scan report') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --image_scan"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --image_scan"
                 }
             }
         }
         stage('Generate Package SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --image"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --image"
                 }
             }
         }
