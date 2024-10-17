@@ -65,7 +65,7 @@ pipeline {
         stage('Generate Package SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python --package --image"
+                    sh "/var/lib/jenkins/lib/concert-ctl-python --image"
                 }
             }
         }
