@@ -28,7 +28,7 @@ pipeline {
                       withCredentials([usernamePassword(credentialsId: "CONCERT_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         env.CONCERT_USERNAME="${USERNAME}"
                         env.CONCERT_PASSWORD="${PASSWORD}"    
-                        sh "/var/lib/jenkins/lib/concert-ctl-python-test -e"
+                        sh "/var/lib/jenkins/lib/concert-ctl-python -e"
                         }
                     }
                 }
@@ -38,7 +38,7 @@ pipeline {
             steps{
                 script{
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
-                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --app"
+                        sh "/var/lib/jenkins/lib/concert-ctl-python --app"
                     }
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
             steps{
                 script{
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
-                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --build"
+                        sh "/var/lib/jenkins/lib/concert-ctl-python --build"
                     }
                 }
             }
@@ -56,7 +56,7 @@ pipeline {
             steps{
                 script{
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
-                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --deploy"
+                        sh "/var/lib/jenkins/lib/concert-ctl-python --deploy"
                     }
                 }
             }
@@ -65,7 +65,7 @@ pipeline {
             steps{
                 script{
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
-                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --image_scan"
+                        sh "/var/lib/jenkins/lib/concert-ctl-python --image_scan"
                     }
                 }
             }
@@ -74,7 +74,7 @@ pipeline {
             steps{
                 script{
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
-                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --image"
+                        sh "/var/lib/jenkins/lib/concert-ctl-python --image"
                     }
                 }
             }
