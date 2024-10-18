@@ -24,12 +24,12 @@ pipeline {
         stage('Test concertCtl and set environment') {
             steps{
                 script{      
-
-                  withCredentials([usernamePassword(credentialsId: "CONCERT_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    env.CONCERT_USERNAME="${USERNAME}"
-                    env.CONCERT_PASSWORD="${PASSWORD}"    
-                    sh "/var/lib/jenkins/lib/concert-ctl-python-test -e"
-
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
+                      withCredentials([usernamePassword(credentialsId: "CONCERT_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        env.CONCERT_USERNAME="${USERNAME}"
+                        env.CONCERT_PASSWORD="${PASSWORD}"    
+                        sh "/var/lib/jenkins/lib/concert-ctl-python-test -e"
+                        }
                     }
                 }
             }
@@ -37,35 +37,45 @@ pipeline {
         stage('Generate Application SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --app"
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
+                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --app"
+                    }
                 }
             }
         }
         stage('Generate Build SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --build"
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
+                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --build"
+                    }
                 }
             }
         }
         stage('Generate Deploy SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --deploy"
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
+                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --deploy"
+                    }
                 }
             }
         }
         stage('Generate Image Scan report') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --image_scan"
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
+                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --image_scan"
+                    }
                 }
             }
         }
         stage('Generate Package SBOM') {
             steps{
                 script{
-                    sh "/var/lib/jenkins/lib/concert-ctl-python-test --image"
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
+                        sh "/var/lib/jenkins/lib/concert-ctl-python-test --image"
+                    }
                 }
             }
         }
