@@ -65,7 +65,7 @@ pipeline {
             steps{
                 script{
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
-                        sh "/var/lib/jenkins/lib/go-concertctl --image_scan"
+                        sh "/var/lib/jenkins/lib/go-concertctl --image"
                     }
                 }
             }
