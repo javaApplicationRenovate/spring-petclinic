@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": false,
+  "schedule": ["every weekday"],
+  "packageRules": [
+    {
+      "updateTypes": ["major", "minor"],
+      "enabled": true,
+      "groupName": "All major and minor dependencies"
+    }
+  ],
+  "commitMessageAction": "update",
+  "commitMessagePrefix": "fix"
+}
+
