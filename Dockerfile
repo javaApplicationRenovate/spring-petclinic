@@ -1,5 +1,5 @@
 # Use a lightweight JDK image for running the application
-FROM eclipse-temurin:17.0.13_11-jdk-alpine 
+FROM eclipse-temurin:25.0.4_7-jdk-alpine 
 WORKDIR /app
 
 # Copy the pre-built JAR file into the container
